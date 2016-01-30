@@ -24,6 +24,8 @@ ENV ALLOW_OVERRIDE **False**
 # Add image configuration and scripts
 ADD run.sh /run.sh
 RUN chmod 755 /*.sh
+# fix mount permissions on MacOS
+RUN usermod -u 1000 www-data
 
 # Configure /app folder with sample app
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
